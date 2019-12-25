@@ -1,8 +1,8 @@
 import React from "react";
 import { PropTypes } from "mobx-react";
-import OfferItem from "./../OfferItem";
-import Paper from "@material-ui/core/Paper";
 import List from "@material-ui/core/List";
+import Paper from "@material-ui/core/Paper";
+import OfferItem from "./../OfferItem";
 
 function OffersList({ offers }) {
   return (

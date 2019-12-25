@@ -1,6 +1,6 @@
 import React from "react";
 import { observer, inject } from "mobx-react";
-import FavoriteButton from "../../components/FavoriteButton/index";
+import FavoriteButton from "../../components/FavoriteButton";
 
 const FavoriteButtonContainer = inject(({ rootStore }) => {
   return {

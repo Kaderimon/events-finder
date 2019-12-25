@@ -6,10 +6,10 @@ import { makeStyles } from "@material-ui/core/styles";
 /* containers */
 import ArtistDetails from "../containers/ArtistDetailsContainer";
 import EventList from "../containers/EventListContainer";
-import FavoritesContainer from "../containers/FavoritesListContainer/index";
+import FavoritesContainer from "../containers/FavoritesListContainer";
 /* components */
-import MainAppBar from "./../components/MainAppBar/index";
-import SearchButton from "./../components/SearchButton/index";
+import MainAppBar from "./../components/MainAppBar";
+import SearchButton from "./../components/SearchButton";
 
 const useStyles = makeStyles({
   spacingFix: {

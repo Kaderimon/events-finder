@@ -2,7 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import {
   Card,
-  CardActionArea,
   CardMedia,
   CardContent,
   CardActions,
@@ -77,7 +76,8 @@ ArtistDetails.propTypes = {
     thumb_url: PropTypes.string,
     url: PropTypes.string,
     upcoming_event_count: PropTypes.number
-  })
+  }),
+  loading: PropTypes.bool
 };
 
 export default ArtistDetails;
