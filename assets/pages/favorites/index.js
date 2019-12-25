@@ -7,7 +7,7 @@ import FavoriteButtonContainer from "../../containers/FavoriteButtonContainer/in
 /* components */
 import MainAppBar from "../../components/MainAppBar/index";
 
-const Event = () => {
+const Favorites = () => {
   let { id } = useParams();
 
   return (
@@ -22,4 +22,4 @@ const Event = () => {
   );
 };
 
-export default Event;
+export default Favorites;

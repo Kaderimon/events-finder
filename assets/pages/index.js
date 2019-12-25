@@ -1,31 +1,33 @@
 import React from "react";
+import { PropTypes } from "mobx-react";
 import debounce from "lodash/debounce";
 import Grid from "@material-ui/core/Grid";
-import Paper from "@material-ui/core/Paper";
 import { makeStyles } from "@material-ui/core/styles";
 /* containers */
-import ArtistDetails from "../containers/Artist";
-import EventList from "./../containers/Events";
-import FavoritesContainer from "./../containers/Favorites/index";
+import ArtistDetails from "../containers/ArtistDetailsContainer";
+import EventList from "../containers/EventListContainer";
+import FavoritesContainer from "../containers/FavoritesListContainer/index";
 /* components */
 import MainAppBar from "./../components/MainAppBar/index";
 import SearchButton from "./../components/SearchButton/index";
 
 const useStyles = makeStyles({
   spacingFix: {
-    marginTop: "1%"
+    marginTop: "1%",
+    width: "100%"
   }
 });
 
-const App = props => {
+const App = ({ artistStore }) => {
   const classes = useStyles();
   return (
     <React.Fragment>
       <MainAppBar>
         <SearchButton
           action={debounce(query => {
-            return props.artistStore.fetchArtist(query);
+            return artistStore.fetchArtist(query);
           }, 1000)}
+          loading={artistStore.isArtistLoading}
         />
       </MainAppBar>
       <Grid
@@ -50,6 +52,10 @@ const App = props => {
       </Grid>
     </React.Fragment>
   );
+};
+
+App.propTypes = {
+  artistStore: PropTypes.observableObject
 };
 
 export default App;

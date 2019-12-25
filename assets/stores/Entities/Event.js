@@ -1,12 +1,13 @@
-import { observable, computed, action, asMap, autorun } from "mobx";
+import { observable, computed, action } from "mobx";
 
 export default class Event {
   @observable event = observable.map();
   @observable venue = observable.map();
   @observable offers;
 
-  constructor(eventData = {}, checked = false) {
+  constructor(parentStore, eventData = {}, checked = false) {
     const { venue, offers, ...rest } = eventData;
+    this.parentStore = parentStore;
     this.event.merge(rest);
     this.venue.merge(venue);
     this.offers = offers;
@@ -39,6 +40,13 @@ export default class Event {
   }
 
   @action toggle() {
-    this.event.set("checked", !this.event.get("checked"));
+    const checked = this.event.get("checked");
+    this.event.set("checked", !checked);
+    if (checked) {
+      const id = this.event.get("id");
+      this.parentStore.removeFavorite(id);
+    } else {
+      this.parentStore.addFavorite(this);
+    }
   }
 }

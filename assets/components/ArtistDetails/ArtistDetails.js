@@ -29,7 +29,7 @@ function ArtistDetails({ artist = {} }) {
   const classes = useStyles();
   const { name, thumb_url, url, upcoming_event_count } = artist;
 
-  return (
+  return name ? (
     <Card className={classes.card}>
       <CardMedia
         className={classes.media}
@@ -58,9 +58,20 @@ function ArtistDetails({ artist = {} }) {
         </CardActions>
       </div>
     </Card>
+  ) : (
+    <Typography gutterBottom variant="h5" component="h2">
+      Let's start with typing something in search...
+    </Typography>
   );
 }
 
-ArtistDetails.propTypes = {};
+ArtistDetails.propTypes = {
+  artist: PropTypes.shape({
+    name: PropTypes.string,
+    thumb_url: PropTypes.string,
+    url: PropTypes.string,
+    upcoming_event_count: PropTypes.number
+  })
+};
 
 export default ArtistDetails;

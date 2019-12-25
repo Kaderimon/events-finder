@@ -27,6 +27,10 @@ function OfferItem({ type, status, url }) {
   );
 }
 
-OfferItem.propTypes = {};
+OfferItem.propTypes = {
+  type: PropTypes.string,
+  status: PropTypes.string,
+  url: PropTypes.string
+};
 
 export default OfferItem;

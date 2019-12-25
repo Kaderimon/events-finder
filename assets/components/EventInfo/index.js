@@ -4,20 +4,12 @@ import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 
-function EventInfo({
-  id,
-  description,
-  lineup,
-  location,
-  date,
-  artist = {},
-  children
-}) {
+function EventInfo({ description, lineup, location, date }) {
   return (
     <Card>
       <CardContent>
         <Typography color="textSecondary">
-          `{date.month} {date.day}`
+          {date.month} {date.day}
         </Typography>
         <Typography variant="h5" component="h2">
           Event
@@ -36,6 +28,14 @@ function EventInfo({
   );
 }
 
-EventInfo.propTypes = {};
+EventInfo.propTypes = {
+  description: PropTypes.string,
+  lineup: PropTypes.array,
+  location: PropTypes.string,
+  date: PropTypes.shape({
+    month: PropTypes.string,
+    day: PropTypes.string
+  })
+};
 
 export default EventInfo;

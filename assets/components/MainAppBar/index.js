@@ -15,10 +15,14 @@ const useStyles = makeStyles(theme => ({
     [theme.breakpoints.up("sm")]: {
       display: "block"
     }
+  },
+  link: {
+    textDecoration: "none",
+    color: "inherit"
   }
 }));
 
-export default function MainAppBar(props) {
+export default function MainAppBar({ children }) {
   const classes = useStyles();
 
   return (
@@ -26,9 +30,11 @@ export default function MainAppBar(props) {
       <AppBar position="static">
         <Toolbar>
           <Typography className={classes.title} variant="h6" noWrap>
-            <Link to={`/`}>Who's In Town?</Link>
+            <Link to={`/`} className={classes.link}>
+              Who's In Town?
+            </Link>
           </Typography>
-          {props.children}
+          {children}
         </Toolbar>
       </AppBar>
     </div>

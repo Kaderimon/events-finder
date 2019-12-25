@@ -65,6 +65,9 @@ const FavoriteButton = ({ active, action }) => {
   );
 };
 
-FavoriteButton.propTypes = {};
+FavoriteButton.propTypes = {
+  active: PropTypes.bool,
+  action: PropTypes.func
+};
 
 export default FavoriteButton;

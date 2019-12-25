@@ -11,34 +11,40 @@ import {
 
 const useStyles = makeStyles({
   secondayAction: {
-    paddingRight: "25%"
+    paddingRight: "calc(16px + 64px)"
+  },
+  date: {
+    marginRight: "6px",
+    textAlign: "center"
   }
 });
 
-function EventItem({
-  id,
-  description,
-  lineup,
-  location,
-  date,
-  artist = {},
-  children
-}) {
+function EventItem({ description, location, date, children }) {
   const classes = useStyles();
 
   return (
     <ListItem button className={classes.secondayAction}>
-      <ListItemAvatar>
+      <div className={classes.date}>
         <ListItemText secondary={date.month}>{date.day}</ListItemText>
-      </ListItemAvatar>
+      </div>
       <ListItemText secondary={location}>{description}</ListItemText>
       <ListItemSecondaryAction>
-        <Button variant="outlined">{children}</Button>
+        <Button size="small" variant="outlined">
+          {children}
+        </Button>
       </ListItemSecondaryAction>
     </ListItem>
   );
 }
 
-EventItem.propTypes = {};
+EventItem.propTypes = {
+  description: PropTypes.string,
+  lineup: PropTypes.array,
+  location: PropTypes.string,
+  date: PropTypes.shape({
+    month: PropTypes.string,
+    day: PropTypes.string
+  })
+};
 
 export default EventItem;

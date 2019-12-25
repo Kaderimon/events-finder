@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from "prop-types";
+import { PropTypes } from "mobx-react";
 import OfferItem from "./../OfferItem";
 import Paper from "@material-ui/core/Paper";
 import List from "@material-ui/core/List";
@@ -27,6 +27,8 @@ function OffersList({ offers }) {
   );
 }
 
-OffersList.propTypes = {};
+OffersList.propTypes = {
+  offers: PropTypes.observableArray
+};
 
 export default OffersList;

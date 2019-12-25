@@ -1,6 +1,5 @@
 import React from "react";
-import PropTypes from "prop-types";
-
+import { PropTypes } from "mobx-react";
 import { Map, Marker, Popup, TileLayer } from "react-leaflet";
 import "leaflet/src/Leaflet";
 import "leaflet/dist/leaflet.css";
@@ -9,7 +8,7 @@ function VenueMap({ venue = {} }) {
   const latitude = venue.get("latitude") || 51.505;
   const longitude = venue.get("longitude") || 51;
   const name = venue.get("name") || "Event Point";
-  console.log(latitude, longitude, name);
+
   return (
     <Map
       center={[latitude, longitude]}
@@ -30,6 +29,8 @@ function VenueMap({ venue = {} }) {
   );
 }
 
-VenueMap.propTypes = {};
+VenueMap.propTypes = {
+  venue: PropTypes.objectOrObservableObject
+};
 
 export default VenueMap;

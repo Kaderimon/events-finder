@@ -1,6 +1,7 @@
 import React from "react";
 import { observer, inject } from "mobx-react";
 import EventsList from "../../components/EventsList";
+import ListWrapper from "../../components/ListWrapper";
 
 const EventListContainer = inject(({ rootStore }) => {
   return {
@@ -8,9 +9,15 @@ const EventListContainer = inject(({ rootStore }) => {
   };
 })(
   observer(({ eventsStore }) => {
-    return <EventsList events={eventsStore.getEvents()} />;
+    return (
+      <ListWrapper title="Upcoming Events">
+        <EventsList
+          events={eventsStore.getEvents()}
+          loading={eventsStore.isEventsLoading}
+        />
+      </ListWrapper>
+    );
   })
 );
 
-EventListContainer.displayName = "EventListContainer";
 export default EventListContainer;

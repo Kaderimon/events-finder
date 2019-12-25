@@ -1,25 +1,23 @@
-import { observable, computed, action } from "mobx";
+import { observable, action, computed } from "mobx";
 import ArtistEvent from "./Entities/Event";
 import { server } from "../utils/config";
 
 class EventsStore {
   @observable events;
+  @observable loading;
 
   constructor(rootStore) {
     this.rootStore = rootStore;
+    this.loading = false;
     this.events = [];
+  }
+
+  @computed get isEventsLoading() {
+    return this.loading;
   }
 
   getEvents() {
     return this.events;
-  }
-
-  @computed get favEvents() {
-    const favEvents = this.events.filter(eventStore => {
-      return eventStore.event.get("checked");
-    });
-    this.rootStore.favoritesStore.setEvents(favEvents);
-    return favEvents;
   }
 
   getEvent(id) {
@@ -28,23 +26,43 @@ class EventsStore {
       const eId = event.get("id");
       if (eId == id) return eventStore;
     }
-    return {};
+    return null;
+  }
+
+  addFavorite(event) {
+    this.rootStore.favoritesStore.addFavorite(event);
+  }
+
+  removeFavorite(event) {
+    this.rootStore.favoritesStore.removeFavorite(event);
+  }
+
+  @action
+  clearEvents() {
+    this.events = [];
   }
 
   @action
   fetch(artistname) {
+    this.loading = true;
     fetch(`${server}/artists/${artistname}/events?app_id=foo`, {
       method: "GET"
     })
       .then(res => res.json())
-      .then(this.putEvents);
+      .then(this.fetchEventsSuccess, this.fetchEventsError);
   }
 
   @action.bound
-  putEvents(events) {
+  fetchEventsSuccess(events) {
     this.events = events.map(event => {
-      return new ArtistEvent(event);
+      return new ArtistEvent(this, event);
     });
+    this.loading = false;
+  }
+
+  @action.bound
+  fetchEventsError(error) {
+    this.loading = false;
   }
 }
 

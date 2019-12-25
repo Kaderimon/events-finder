@@ -1,8 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 import InputBase from "@material-ui/core/InputBase";
-import { fade, makeStyles } from "@material-ui/core/styles";
 import SearchIcon from "@material-ui/icons/Search";
+import { fade, makeStyles } from "@material-ui/core/styles";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 const useStyles = makeStyles(theme => ({
   search: {
@@ -44,13 +45,13 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const SearchButton = ({ action }) => {
+const SearchButton = ({ action, loading }) => {
   const classes = useStyles();
 
   return (
     <div className={classes.search}>
       <div className={classes.searchIcon}>
-        <SearchIcon />
+        {loading ? <CircularProgress size={20} /> : <SearchIcon />}
       </div>
       <InputBase
         placeholder="Search…"
@@ -67,6 +68,9 @@ const SearchButton = ({ action }) => {
   );
 };
 
-SearchButton.propTypes = {};
+SearchButton.propTypes = {
+  action: PropTypes.func,
+  loading: PropTypes.bool
+};
 
 export default SearchButton;
