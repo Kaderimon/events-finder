@@ -9,7 +9,12 @@ const ArtistDetailsContainer = inject(({ rootStore }) => {
   };
 })(
   observer(({ artistStore }) => {
-    return <ArtistDetails artist={artistStore.getArtist()} />;
+    return (
+      <ArtistDetails
+        artist={artistStore.getArtist()}
+        loading={artistStore.isArtistLoading}
+      />
+    );
   })
 );
 

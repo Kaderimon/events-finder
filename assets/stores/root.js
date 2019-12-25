@@ -1,9 +1,6 @@
-import { useStaticRendering } from "mobx-react";
 import { EventsStore } from "./events";
 import { FavoritesStore } from "./favorites";
 import { ArtistStore } from "./artist";
-const isServer = typeof window === "undefined";
-useStaticRendering(isServer);
 
 class RootStore {
   constructor() {
