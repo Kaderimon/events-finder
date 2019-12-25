@@ -1,14 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {
-  Card,
-  CardMedia,
-  CardContent,
-  CardActions,
-  Button,
-  Typography,
-  makeStyles
-} from "@material-ui/core";
+import Card from "@material-ui/core/Card";
+import Button from "@material-ui/core/Button";
+import Divider from "@material-ui/core/Divider";
+import CardMedia from "@material-ui/core/CardMedia";
+import { makeStyles } from "@material-ui/core/styles";
+import Typography from "@material-ui/core/Typography";
+import CardContent from "@material-ui/core/CardContent";
+import CardActions from "@material-ui/core/CardActions";
 import LoadingIndicator from "../LoadingIndicator";
 
 const useStyles = makeStyles({
@@ -20,13 +19,20 @@ const useStyles = makeStyles({
     display: "flex",
     flexDirection: "column"
   },
+  emptyDetails: {
+    width: "100%"
+  },
+  emptyText: {
+    paddingTop: "16px",
+    paddingLeft: "16px"
+  },
   media: {
     width: "50%"
   }
 });
 
 function ArtistDetails({ artist = {}, loading }) {
-  if (loading) <LoadingIndicator />;
+  if (loading) return <LoadingIndicator />;
   const classes = useStyles();
   const { name, thumb_url, url, upcoming_event_count } = artist;
 
@@ -62,9 +68,18 @@ function ArtistDetails({ artist = {}, loading }) {
           </div>
         </React.Fragment>
       ) : (
-        <Typography gutterBottom variant="h5" component="h2">
-          Let's start with typing something in search...
-        </Typography>
+        <div className={classes.emptyDetails}>
+          <Typography
+            gutterBottom
+            variant="h5"
+            component="h2"
+            className={classes.emptyText}
+          >
+            Let's start with typing something in search...
+          </Typography>
+          <Divider />
+          <Typography gutterBottom variant="h5" component="p"></Typography>
+        </div>
       )}
     </Card>
   );

@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { observer, PropTypes as MobxPropTypes } from "mobx-react";
 import InputBase from "@material-ui/core/InputBase";
 import SearchIcon from "@material-ui/icons/Search";
 import { fade, makeStyles } from "@material-ui/core/styles";
@@ -45,13 +46,13 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const SearchButton = ({ action, loading }) => {
+const SearchButton = ({ action, artistStore }) => {
   const classes = useStyles();
 
   return (
     <div className={classes.search}>
       <div className={classes.searchIcon}>
-        {loading ? <CircularProgress size={20} /> : <SearchIcon />}
+        {artistStore.loading ? <CircularProgress size={20} /> : <SearchIcon />}
       </div>
       <InputBase
         placeholder="Search…"
@@ -70,7 +71,7 @@ const SearchButton = ({ action, loading }) => {
 
 SearchButton.propTypes = {
   action: PropTypes.func,
-  loading: PropTypes.bool
+  artistStore: MobxPropTypes.observableObject
 };
 
-export default SearchButton;
+export default observer(SearchButton);

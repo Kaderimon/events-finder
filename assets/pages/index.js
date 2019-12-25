@@ -27,7 +27,7 @@ const App = ({ artistStore }) => {
           action={debounce(query => {
             return artistStore.fetchArtist(query);
           }, 1000)}
-          loading={artistStore.isArtistLoading}
+          artistStore={artistStore}
         />
       </MainAppBar>
       <Grid
