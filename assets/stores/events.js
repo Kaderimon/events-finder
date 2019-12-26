@@ -23,8 +23,9 @@ class EventsStore {
   getEvent(id) {
     for (let eventStore of this.events) {
       const { event } = eventStore;
-      const eId = event.get("id");
-      if (eId == id) return eventStore;
+      const eventId = event.id;
+
+      if (eventId == id) return eventStore;
     }
     return null;
   }

@@ -11,12 +11,12 @@ const FavoriteButtonContainer = inject(({ rootStore }) => {
   observer(({ favoritesStore, eventsStore, eventid }) => {
     const eventStore = eventsStore.getEvent(eventid);
     const favoriteStore = favoritesStore.getEvent(eventid);
-    const store = eventStore !== null ? eventStore : favoriteStore;
+    const store = favoriteStore !== null ? favoriteStore : eventStore;
 
     return (
       store !== null && (
         <FavoriteButton
-          active={store.event.get("checked")}
+          active={store.event.checked}
           action={() => store.toggle()}
         />
       )

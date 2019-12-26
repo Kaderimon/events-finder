@@ -1,5 +1,4 @@
 import { observable, action, computed } from "mobx";
-import fetch from "isomorphic-unfetch";
 import { server } from "../utils/config";
 
 class ArtistStore {

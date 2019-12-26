@@ -29,13 +29,14 @@ function EventsList({ events = [], loading }) {
   return events.length > 0 ? (
     <List className={classes.root} aria-label="events">
       {events.map(eventStore => {
-        const id = eventStore.event.get("id");
+        const { id, description, lineup } = eventStore.event;
+
         return (
           <EventItem
             key={id}
             id={id}
-            description={eventStore.event.get("description")}
-            lineup={eventStore.event.get("lineup")}
+            description={description}
+            lineup={lineup}
             location={eventStore.location}
             date={eventStore.date}
           >

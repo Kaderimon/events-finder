@@ -28,13 +28,13 @@ function FavoriteList({ favEvents = [], loading }) {
   return favEvents.length > 0 ? (
     <List className={classes.root} aria-label="favEvents">
       {favEvents.map(eventStore => {
-        const id = eventStore.event.get("id");
+        const { id, description, lineup } = eventStore.event;
 
         return (
           <EventItem
             key={id}
-            description={eventStore.event.get("description")}
-            lineup={eventStore.event.get("lineup")}
+            description={description}
+            lineup={lineup}
             location={eventStore.location}
             date={eventStore.date}
           >

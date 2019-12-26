@@ -5,9 +5,7 @@ import "leaflet/src/Leaflet";
 import "leaflet/dist/leaflet.css";
 
 function VenueMap({ venue = {} }) {
-  const latitude = venue.get("latitude") || 51.505;
-  const longitude = venue.get("longitude") || 51;
-  const name = venue.get("name") || "Event Point";
+  const { latitude = 51.505, longitude = 51, name = "Event Point" } = venue;
 
   return (
     <Map

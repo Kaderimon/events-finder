@@ -1,17 +1,16 @@
 import { observable, computed, action } from "mobx";
 
 export default class Event {
-  @observable event = observable.map();
-  @observable venue = observable.map();
+  @observable event;
+  @observable venue;
   @observable offers;
 
   constructor(parentStore, eventData = {}, checked = false) {
     const { venue, offers, ...rest } = eventData;
     this.parentStore = parentStore;
-    this.event.merge(rest);
-    this.venue.merge(venue);
+    this.event = { ...rest, checked };
+    this.venue = venue;
     this.offers = offers;
-    this.event.set("checked", checked);
   }
 
   getEventInfo() {
@@ -27,7 +26,7 @@ export default class Event {
   }
 
   @computed get date() {
-    const date = new Date(this.event.get("datetime"));
+    const date = new Date(this.event.datetime);
 
     return {
       day: new Intl.DateTimeFormat("en-US", { day: "2-digit" }).format(date),
@@ -36,14 +35,14 @@ export default class Event {
   }
 
   @computed get location() {
-    return `${this.venue.get("city")} - ${this.venue.get("name")}`;
+    return `${this.venue.city} - ${this.venue.name}`;
   }
 
   @action toggle() {
-    const checked = this.event.get("checked");
-    this.event.set("checked", !checked);
+    const { checked } = this.event;
+    this.event.checked = !checked;
     if (checked) {
-      const id = this.event.get("id");
+      const { id } = this.event;
       this.parentStore.removeFavorite(id);
     } else {
       this.parentStore.addFavorite(this);

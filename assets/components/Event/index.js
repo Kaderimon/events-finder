@@ -16,13 +16,14 @@ const useStyles = makeStyles({
 
 function Event({ eventStore }) {
   const classes = useStyles();
+  const { id, description, lineup } = eventStore.event;
 
   return (
     <Grid container justify="center" spacing={2} className={classes.spacingFix}>
       <Grid item xs={5}>
         <EventInfo
-          description={eventStore.event.get("description")}
-          lineup={eventStore.event.get("lineup")}
+          description={eventStore.event.description}
+          lineup={eventStore.event.lineup}
           location={eventStore.location}
           date={eventStore.date}
         />

@@ -12,7 +12,7 @@ const EventContainer = inject(({ rootStore }) => {
   observer(({ favoritesStore, eventsStore, eventid }) => {
     const eventStore = eventsStore.getEvent(eventid);
     const favoriteStore = favoritesStore.getEvent(eventid);
-    const store = eventStore !== null ? eventStore : favoriteStore;
+    const store = favoriteStore !== null ? favoriteStore : eventStore;
 
     return store !== null ? (
       <Event eventStore={store} eventid={eventid} />

@@ -13,9 +13,7 @@ const useStyles = makeStyles({
 
 function VenueInfo({ venue = {} }) {
   const classes = useStyles();
-  const country = venue.get("country") || "";
-  const city = venue.get("city") || "";
-  const name = venue.get("name") || "";
+  const { country, city, name } = venue;
 
   return (
     <Card className={classes.venue}>
