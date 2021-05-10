@@ -14,7 +14,7 @@
     "dexie": "^2.0.4",
     "isomorphic-unfetch": "^3.0.0",
     "leaflet": "^1.6.0",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.21",
     "mobx": "^5.15.1",
     "mobx-react": "^6.1.4",
     "node-sass": "^4.13.0",
